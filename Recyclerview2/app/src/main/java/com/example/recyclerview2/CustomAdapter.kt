@@ -57,8 +57,8 @@ class CustomAdapter(private val listitems: MutableList<ListModel>, private val c
                 val v2: View = inflater.inflate(R.layout.item_image_offer, viewGroup, false)
                 viewHolder = OfferImageViewHolder(v2)
 
-                val v3: View = inflater.inflate(R.layout.item_text_offer, viewGroup, false)
-                viewHolder = MessageTextViewHolder(v3)
+               // val v3: View = inflater.inflate(R.layout.item_text_offer, viewGroup, false)
+                //viewHolder = MessageTextViewHolder(v3)
             }
             VIEW_TEXT_MESSAGE -> {
                 val v2: View = inflater.inflate(R.layout.item_text_offer, viewGroup, false)
@@ -80,27 +80,27 @@ class CustomAdapter(private val listitems: MutableList<ListModel>, private val c
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int){
         when (holder.getItemViewType()) {
             VIEW_FAVORITE_ITEM -> {
-                val mTVH: MessageTextViewHolder = holder as MessageTextViewHolder
-                mTVH.updateData(listitems.get(position))
+                val oIVH = holder as ImageTextViewHolder
+                oIVH.updateData(listitems.get(position))
             }
             VIEW_OFFER_IMAGE -> {
                 val oIVH = holder as OfferImageViewHolder
                 oIVH.updateData(listitems.get(position))
             }
             else -> {
-                val oIVH = holder as ImageTextViewHolder
-                oIVH.updateData(listitems.get(position))
+                val mTVH: MessageTextViewHolder = holder as MessageTextViewHolder
+                mTVH.updateData(listitems.get(position))
             }
         }
 
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (listitems.get(position).equals(1)) {
+        if (listitems.get(position).type == 1) {
             return VIEW_TEXT_MESSAGE
-        } else if (listitems.get(position).equals(2)) {
+        } else if (listitems.get(position).type == 2) {
             return VIEW_FAVORITE_ITEM
-        } else if (listitems.get(position).equals(3)) {
+        } else if (listitems.get(position).type == 3) {
             return VIEW_OFFER_IMAGE
         }
         return -1
