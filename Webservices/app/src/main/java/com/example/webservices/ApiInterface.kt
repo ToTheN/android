@@ -1,6 +1,5 @@
 package com.example.webservices
 
-import org.w3c.dom.Entity
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -10,10 +9,7 @@ const val BASE_URL= "https://jsonplaceholder.typicode.com/posts/"
 
 interface ApiInterface {
     @GET("/posts")
-    fun getpost(@Query("id")id:Int): Call<List<Pojo>>?
-
-    //@GET("/posts/{id}")
-    //fun getpost(@Path("id")id:Int): Call<List<Pojo>>
+    fun getPost(@Query("id")id:Int): Call<List<User>>?
 
 }
 object Apiservice

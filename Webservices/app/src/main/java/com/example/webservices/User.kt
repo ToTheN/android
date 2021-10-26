@@ -3,7 +3,7 @@ package com.example.webservices
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class Pojo(
+data class User(
     @SerializedName("userId")
     @Expose
     val userId: Int,

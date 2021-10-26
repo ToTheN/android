@@ -8,12 +8,12 @@ class MyApplication:Application() {
     companion object {
         private var instance: MyApplication? = null
 
-        fun getinstance(): MyApplication? {
+        fun getInstance(): MyApplication? {
             return instance
         }
 
-        fun hasnetwork(): Boolean {
-            return instance!!.isnetworkconnected() ?: false
+        fun hasNetwork(): Boolean {
+            return instance!!.isNetworkConnected() ?: false
         }
     }
 
@@ -25,7 +25,7 @@ class MyApplication:Application() {
         }
     }
 
-    private fun isnetworkconnected():Boolean
+    private fun isNetworkConnected():Boolean
     {
         val network = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val active = network.activeNetworkInfo
