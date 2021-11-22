@@ -22,41 +22,45 @@ import java.util.zip.Inflater
 open class Dialog : DialogFragment() {
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        val view:View = inflater.inflate(R.layout.fragment_dialog,container,false)
         return view
     }
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
-        var title:String = DialogArgs.fromBundle(requireArguments()).title
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-
-        val alertDialog = AlertDialog.Builder(activity)
-        val inflater = requireActivity().layoutInflater
-
-        val view:View = inflater.inflate(R.layout.fragment_dialog,null)
-
-        alertDialog.setView(view)
-            .setTitle("Add Description")
-            .setPositiveButton(R.string.save,DialogInterface.OnClickListener { dialogInterface, i ->
-
-                var description:EditText = view.findViewById(R.id.edit_decription)
-                var change = description.text.toString()
-
-                var myViewModel = MyViewModel()
-                myViewModel.Update(change)
-
-            })
-            .setNegativeButton(R.string.cancel,DialogInterface.OnClickListener { dialogInterface, i ->
-
-            })
-        var titleText:TextView = view.findViewById(R.id.title_text)
-        titleText.text = title
-
-      return alertDialog.create()
-
+        withEditText(view)
     }
+    fun withEditText(view: View) {
+        val myViewModel:MyViewModel = MyViewModel()
+
+        val builder = AlertDialog.Builder(activity)
+        val inflater = layoutInflater
+        val dialogLayout = inflater.inflate(R.layout.fragment_dialog, null)
+        var editDesc = dialogLayout.findViewById<EditText>(R.id.edit_decription)
+        var descChange = editDesc.text.toString()
+        var title:String = DialogArgs.fromBundle(requireArguments()).title
+        builder.setView(dialogLayout)
+        builder.setTitle("Add Description")
+        builder.setMessage(title)
+        builder.setPositiveButton("OK")
+        {
+                dialogInterface, i -> myViewModel.Update(descChange)
+            fragmentManager?.popBackStackImmediate()
+
+        }
+        builder.setNegativeButton("Cancel")
+        {
+            dialogInterface , i-> fragmentManager?.popBackStackImmediate()
+        }
+        builder.show()
+    }
+
+
+
 
 }

@@ -27,7 +27,21 @@ class SplashFragment : Fragment() {
         val navController:NavController= Navigation.findNavController(view)
         Handler(Looper.getMainLooper()).postDelayed(object:Runnable {
             override fun run() {
+              /*  val loginFragment = LoginFragment()
+                loginFragment.validate(view)
+                val sharedPreferences : SharedPreferences = requireActivity().getSharedPreferences("kotlinsharedpreference",
+                    Context.MODE_PRIVATE)
+                if(sharedPreferences.contains(null))
+                {
+                    navController.navigate(R.id.action_fragment1_to_loginFragment)
+                }
+                else{
+                    navController.navigate(R.id.action_fragment1_to_fragment2)
+                }
+
+               */
                 navController.navigate(R.id.action_fragment1_to_loginFragment)
+
 
             } },3000)
     }

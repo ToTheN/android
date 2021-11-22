@@ -14,22 +14,6 @@
         android:textSize="40dp"/>
 
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/edit_id"
-        android:hint="Id"
-        android:textSize="30dp"
-        android:padding="4dp"
-        android:inputType="number"
-        android:textAlignment="center"
-        android:textColorHint="#9C9C9C"
-        android:layout_marginRight="40dp"
-        android:layout_marginLeft="40dp"
-        android:singleLine="true"
-        android:background="#CDEBFF"
-        android:layout_marginTop="110dp"/>
-
 
     <EditText
         android:layout_width="match_parent"
